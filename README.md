@@ -16,7 +16,8 @@ CalLI: a minimalist calendar with a CLI interface
 - delete
 
 ### Soon
-- Complete JSON pretty-printer
+- Complete JSON pretty-printer module
+- write input handling module
 - Convert model logic to UNIX-time
 - Write frontpage
 - Write register/login flow
