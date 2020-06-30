@@ -1,4 +1,6 @@
 # calli
+`` Greek for Beautiful``
+
 CalLI: a minimalist calendar with a CLI interface
 
 ## TODOs
