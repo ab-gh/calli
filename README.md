@@ -1,7 +1,7 @@
 # calli
 `` Greek for Beautiful``
 
-CalLI: a minimalist calendar with a CLI interface
+an open-source, minimalist calendar API and CLI
 
 ## TODOs
 
