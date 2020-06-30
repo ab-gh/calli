@@ -12,16 +12,28 @@ an open-source, minimalist calendar API and CLI
 - tomorrow
 - week
 - next
-- look
+- search
+- delete
+
+## Current
+- Write frontpage
+- Write register/login flow
+- event
+- remind
+- today
+
+## Next
+- convert incremental eIDs to @eIDs
+- Convert model logic to UNIX-time
+- tomorrow
+- next
+- search
 - delete
 
 ### Soon
 - Complete JSON pretty-printer module
 - write input handling module
-- Convert model logic to UNIX-time
-- Write frontpage
-- Write register/login flow
-- Write secret key logic
+
 
 ### Schedule
 
