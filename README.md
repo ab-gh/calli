@@ -22,6 +22,7 @@ CalLI: a minimalist calendar with a CLI interface
 - Write register/login flow
 - Write secret key logic
 
+### Schedule
 
 
 ### Far
