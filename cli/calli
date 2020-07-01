@@ -5,6 +5,7 @@ import json
 import requests
 import printer
 import bcrypt
+import dateutil.parser
 import os
 import sys
 
@@ -18,7 +19,9 @@ def main():
 
 @main.command()
 def today():
-    url = baseurl + "/today"
+    today_start = dt.datetime.combine(dt.datetime.today(), dt.time(0)).strftime('%s')
+    today_end = dt.datetime.combine((dt.datetime.today() + dt.timedelta(days=1)), dt.time(0)).strftime('%s')
+    url = baseurl + "/events" + "?start=" + today_start + "&end=" + today_end
     events_today = requests.get(url, headers={'token': token})
     printer.pretty(events_today.text)
 
@@ -43,21 +46,29 @@ def login(username, password):
 
 @main.command()
 @click.argument("event_name", nargs=-1)
-@click.option("--day", "-d", default=dt.date.today().strftime("%d/%m/%Y"), show_default=False, prompt="date (D/M/<YYYY>)", help="Date of the event")
-@click.option("--start", "-t", default=dt.time(0).strftime("%-I:%M%p"), prompt="start time (HH:MMam/pm)", help="Start time of the event", show_default=False)
+@click.option("--day", "-d", default=dt.date.today().strftime("%d/%m/%Y"), show_default=False, prompt="date", help="Date of the event")
+@click.option("--start", "-t", default=dt.time(0).strftime("%-I:%M%p"), prompt="start time", help="Start time of the event", show_default=False)
 @click.option("--duration", "-l", default='60', prompt="duration (minutes)", help="Duration of the event", show_default=False)
 @click.option("--info", "-i", default='', prompt="information (optional)", help="Event Location", show_default=False)
 def event(event_name, day, start, duration, info):
-    url = baseurl + "/new/event"
-    event_d = {}
-    event_d["name"] = " ".join(event_name)
-    event_d["date"] = dt.datetime.strptime(day, "%d/%m/%Y").strftime("%Y-%m-%d")
-    event_d["start"] = dt.datetime.strptime(start, "%I:%M%p").strftime("%H:%M")
+    url = baseurl + "/events"
+    event_d = {"name": " ".join(event_name)}
     try:
-        event_d["end"] = ((dt.datetime.combine(dt.date.today(), dt.datetime.strptime(start, "%I:%M%p").time())) + dt.timedelta(minutes=int(duration))).strftime("%H:%M")
-    except:
-        click.echo("Start time requires the HH:MMam/pm format")
-    event_d['location'] = info
+        date = dateutil.parser.parse(day, dayfirst=True)
+    except ValueError:
+        click.echo(click.style('please enter a valid date', fg='red'))
+    try:
+        time = dateutil.parser.parse(start, dayfirst=True)
+    except ValueError:
+        click.echo(click.style('please enter a valid start time', fg='red'))
+    start = dt.datetime.combine(date.date(), time.time())
+    try:
+        end = start + dt.timedelta(minutes=int(duration))
+    except ValueError:
+        click.echo(click.style('please enter an integer number of minutes', fg='red'))
+    event_d['start'] = start.strftime("%s")
+    event_d['end'] = end.strftime("%s")
+    event_d['info'] = info
     pending = requests.post(url, json=json.loads(json.dumps(event_d)), headers={'token': token})
     if pending.status_code == 200:
         click.echo(f"-> event {json.loads(pending.text)['eventhex']} created")
