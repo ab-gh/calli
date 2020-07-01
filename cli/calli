@@ -19,7 +19,7 @@ def main():
 @main.command()
 def today():
     url = baseurl + "/today"
-    events_today = requests.get(url)
+    events_today = requests.get(url, headers={'token': token})
     printer.pretty(events_today.text)
 
 @main.command()
@@ -31,14 +31,15 @@ def login(username, password):
     credentials["username"] = username
     credentials["hash"] = (bcrypt.hashpw(password.encode(), bcrypt.gensalt(5))).decode()
     credentials["password"] = password
-    print(credentials)
     pending = requests.post(url, json=json.loads(json.dumps(credentials)))
     if pending.status_code == 200:
         token_file = open(".token.json", "w")
         token_file.write(json.loads(pending.text))
         token_file.close()
+        click.echo(click.style('successfully logged in.', fg='green'))
+        click.echo(click.style('do not share your token stored in .token.json', fg='red', bold=True))
     else:
-        click.echo("login failed. please try again.")
+        click.echo(click.style('login failed. please try again,', fg='yellow', bold=True))
 
 @main.command()
 @click.argument("event_name", nargs=-1)
@@ -47,7 +48,6 @@ def login(username, password):
 @click.option("--duration", "-l", default='60', prompt="duration (minutes)", help="Duration of the event", show_default=False)
 @click.option("--info", "-i", default='', prompt="information (optional)", help="Event Location", show_default=False)
 def event(event_name, day, start, duration, info):
-    print(token)
     url = baseurl + "/new/event"
     event_d = {}
     event_d["name"] = " ".join(event_name)
@@ -60,7 +60,7 @@ def event(event_name, day, start, duration, info):
     event_d['location'] = info
     pending = requests.post(url, json=json.loads(json.dumps(event_d)), headers={'token': token})
     if pending.status_code == 200:
-        click.echo(f"Created event {event_d['name']} on {event_d['date']} at {event_d['start']} until {event_d['end']}")
+        click.echo(f"-> event {json.loads(pending.text)['eventhex']} created")
     else:
         click.echo("failed")
 
