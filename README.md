@@ -15,16 +15,19 @@ an open-source, minimalist calendar API and CLI
 - search
 - delete
 
-## Current
+## Done
 - Write frontpage
 - Write register/login flow
 - event
-- remind
-- today
-
-## Next
 - convert incremental eIDs to @eIDs
 - Convert model logic to UNIX-time
+
+## Current
+- remind
+- today
+- write input handling module
+
+## Next
 - tomorrow
 - next
 - search
@@ -32,7 +35,6 @@ an open-source, minimalist calendar API and CLI
 
 ### Soon
 - Complete JSON pretty-printer module
-- write input handling module
 
 
 ### Schedule
