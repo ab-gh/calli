@@ -21,17 +21,21 @@ an open-source, minimalist calendar API and CLI
 - event
 - convert incremental eIDs to @eIDs
 - Convert model logic to UNIX-time
-
-## Current
 - remind
 - today
+- delete
+
+## Current
 - write input handling module
+- UNIQUE TOKENS
 
 ## Next
 - tomorrow
 - next
 - search
-- delete
+- CLI docs
+- API docs
+
 
 ### Soon
 - Complete JSON pretty-printer module
