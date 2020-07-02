@@ -69,23 +69,65 @@ def event(event_name, day, start, duration, info):
     event_d['start'] = start.strftime("%s")
     event_d['end'] = end.strftime("%s")
     event_d['info'] = info
+    event_d['type'] = 'E'
     pending = requests.post(url, json=json.loads(json.dumps(event_d)), headers={'token': token})
     if pending.status_code == 200:
-        click.echo(f"-> event {json.loads(pending.text)['eventhex']} created")
+        click.echo(f"-> event {json.loads(pending.text)['eventhex'].lower()} created")
     else:
-        click.echo("failed")
+        click.echo(click.style('event creation failed', fg='red'))
+        click.echo(click.style('please check your network connection and retry', fg='yellow'))
 
 @main.command()
-@click.argument("reminder_name", nargs=-1)
-@click.option("--day", "-d", default=dt.date.today().strftime("%-d/%-m/%Y"), prompt="Day", help="Date of the reminder")
-@click.option("--time", "-t", default=dt.time(0).strftime("%-I:%M%P"), prompt="Time", help="Time of the reminder")
-def remind(reminder_name, day, time):
-    remind_d = {}
-    remind_d["name"] = " ".join(reminder_name)
-    remind_d["day"] = day
-    remind_d["time"] = time
-    json.loads(json.dumps(remind_d))
-    click.echo(f"Reminder created {remind_d['name']} on {remind_d['day']} at {remind_d['time']}")
+@click.argument("remind_name", nargs=-1)
+@click.option("--day", "-d", default=dt.date.today().strftime("%d/%m/%Y"), show_default=False, prompt="date", help="Date of the event")
+@click.option("--start", "-t", default=dt.time(0).strftime("%-I:%M%p"), prompt="start time", help="Start time of the event", show_default=False)
+@click.option("--info", "-i", default='', prompt="information (optional)", help="Event Location", show_default=False)
+def remind(remind_name, day, start, info):
+    url = baseurl + "/events"
+    event_d = {"name": " ".join(remind_name)}
+    try:
+        date = dateutil.parser.parse(day, dayfirst=True)
+    except ValueError:
+        click.echo(click.style('please enter a valid date', fg='red'))
+    try:
+        time = dateutil.parser.parse(start, dayfirst=True)
+    except ValueError:
+        click.echo(click.style('please enter a valid start time', fg='red'))
+    start = dt.datetime.combine(date.date(), time.time())
+    event_d['start'] = start.strftime("%s")
+    event_d['info'] = info
+    event_d['type'] = 'R'
+    pending = requests.post(url, json=json.loads(json.dumps(event_d)), headers={'token': token})
+    if pending.status_code == 200:
+        click.echo(f"-> reminder {json.loads(pending.text)['eventhex'].lower()} created")
+    else:
+        click.echo(click.style('reminder creation failed', fg='red'))
+        click.echo(click.style('please check your network connection and retry', fg='yellow'))
+
+@main.command()
+@click.argument("event-hex", nargs=-1)
+def delete(event_hex):
+    url = baseurl + "/events"
+    delete_a = []
+    delete_d = {}
+    for i in event_hex:
+        if i[0] == "@" and len(i) == 7:
+            delete_a.append(i)
+        elif len(i) == 6:
+            delete_a.append("@"+i)
+        else:
+            click.echo(click.style(f'{i} is not a recognised event hex', fg='red'))
+            continue
+    delete_d['hex'] = delete_a
+    print(delete_d)
+    pending = requests.delete(url, json=json.loads(json.dumps(delete_d)), headers={'token': token})
+    if pending.status_code == 204:
+        click.echo("events successfully deleted")
+    else:
+        click.echo(click.style('deletion failed', fg='red'))
+        click.echo(click.style('please check that the events are valid', fg='yellow'))
+
+
 
 if __name__ == "__main__":
     try:
