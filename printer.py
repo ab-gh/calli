@@ -3,10 +3,10 @@ import inflect
 import datetime as dt
 from dateutil import tz
 
-def pretty(content):
+def pretty(content, range):
     p = inflect.engine()
     content = json.loads(content)
-    print(f"{p.no('event', len(content))} today")
+    print(f"{p.no('event', len(content))} {range}")
     for row in content:
         if row["type"] == "E":
             pointy = "->"

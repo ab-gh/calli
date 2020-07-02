@@ -23,7 +23,15 @@ def today():
     today_end = dt.datetime.combine((dt.datetime.today() + dt.timedelta(days=1)), dt.time(0)).strftime('%s')
     url = baseurl + "/events" + "?start=" + today_start + "&end=" + today_end
     events_today = requests.get(url, headers={'token': token})
-    printer.pretty(events_today.text)
+    printer.pretty(events_today.text, "today")
+
+@main.command()
+def tomorrow():
+    tomorrow_start = dt.datetime.combine((dt.datetime.today() + dt.timedelta(days=1)), dt.time(0)).strftime('%s')
+    tomorrow_end = dt.datetime.combine((dt.datetime.today() + dt.timedelta(days=2)), dt.time(0)).strftime('%s')
+    url = baseurl + "/events" + "?start=" + tomorrow_start + "&end=" + tomorrow_end
+    events_today = requests.get(url, headers={'token': token})
+    printer.pretty(events_today.text, "tomorrow")
 
 @main.command()
 @click.option("--username", prompt="username")
