@@ -23,19 +23,18 @@ an open-source, minimalist calendar API and CLI
 - Convert model logic to UNIX-time
 - remind
 - today
+- tomorrow
+- week
 - delete
 
 ## Current
 - write input handling module
-- UNIQUE TOKENS
-
-## Next
-- tomorrow
-- next
-- search
 - CLI docs
 - API docs
 
+## Next
+- next
+- search
 
 ### Soon
 - Complete JSON pretty-printer module
