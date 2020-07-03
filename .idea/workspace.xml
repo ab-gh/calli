@@ -20,8 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a969c682-6a41-4fe2-a7f4-5626a4a21091" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calli" beforeDir="false" afterPath="$PROJECT_DIR$/calli" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/printer.py" beforeDir="false" afterPath="$PROJECT_DIR$/printer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +32,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1e3cJ3WISNmuocUsSG7QenzrwCu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -59,7 +60,8 @@
       <option name="presentableId" value="Default" />
       <updated>1593553641351</updated>
       <workItem from="1593553643289" duration="87000" />
-      <workItem from="1593597231612" duration="17580000" />
+      <workItem from="1593597231612" duration="17755000" />
+      <workItem from="1593789695377" duration="918000" />
     </task>
     <task id="LOCAL-00001" summary="changes cal-&gt;calli (cal exists in unix)">
       <created>1593553698862</created>
