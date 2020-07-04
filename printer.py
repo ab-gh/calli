@@ -14,6 +14,5 @@ def pretty(content, range):
             pointy = "-*"
         else:
             pointy = "-?"
-        utc = dt.datetime.utcfromtimestamp(int(row['start']))
-        local = utc.replace(tzinfo=dt.timezone.utc).astimezone(tz=None)
-        print(f"{row['eventhex'].lower()} {pointy} {local.strftime('%I:%M%p')} {row['name']}")
+        local = dt.datetime.utcfromtimestamp(int(row['start'])).replace(tzinfo=dt.timezone.utc).astimezone(tz.tzlocal())
+        print(f"{row['eventhex'].lower()} {pointy} {local.strftime('%I:%M %p')} {row['name']}")

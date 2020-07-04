@@ -21,7 +21,7 @@ def main():
 def today():
     today_start = dt.datetime.now().strftime('%s')
     today_end = dt.datetime.combine((dt.datetime.today() + dt.timedelta(days=1)), dt.time(0)).strftime('%s')
-    url = baseurl + "/events" + "?start=" + today_start + "&end=" + today_end
+    url = baseurl + "/events" + "?start=" + today_start + "&end=" + str(int(today_end)-1)
     events_today = requests.get(url, headers={'token': token})
     printer.pretty(events_today.text, "today")
 
