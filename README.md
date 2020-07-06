@@ -26,11 +26,13 @@ an open-source, minimalist calendar API and CLI
 - tomorrow
 - week
 - delete
+- CLI docs
 
 ## Current
 - write input handling module
-- CLI docs
+- edit (client side)
 - API docs
+- webdash buttons
 
 ## Next
 - next
