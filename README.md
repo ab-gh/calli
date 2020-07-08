@@ -27,10 +27,10 @@ an open-source, minimalist calendar API and CLI
 - week
 - delete
 - CLI docs
+- edit (client side)
 
 ## Current
 - write input handling module
-- edit (client side)
 - API docs
 - webdash buttons
 
@@ -41,9 +41,7 @@ an open-source, minimalist calendar API and CLI
 ### Soon
 - Complete JSON pretty-printer module
 
-
 ### Schedule
-
 
 ### Far
 - Compile as binary (i.e. include click library)
