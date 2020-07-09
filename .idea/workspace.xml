@@ -21,9 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a969c682-6a41-4fe2-a7f4-5626a4a21091" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calli" beforeDir="false" afterPath="$PROJECT_DIR$/calli" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/printer.py" beforeDir="false" afterPath="$PROJECT_DIR$/printer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +48,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Python" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -68,7 +66,7 @@
       <workItem from="1593943474199" duration="6139000" />
       <workItem from="1594132481936" duration="5392000" />
       <workItem from="1594144809215" duration="438000" />
-      <workItem from="1594205694055" duration="2507000" />
+      <workItem from="1594205694055" duration="5921000" />
     </task>
     <task id="LOCAL-00001" summary="changes cal-&gt;calli (cal exists in unix)">
       <created>1593553698862</created>
@@ -77,7 +75,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593553698862</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="updates printer">
+      <created>1594308683898</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1594308683899</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,16 +102,22 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="changes cal-&gt;calli (cal exists in unix)" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes cal-&gt;calli (cal exists in unix)" />
+    <MESSAGE value="updates printer" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates printer" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1173" y="16" width="731" height="1048" key="RollbackChangesDialog" timestamp="1594050951760">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="1173" y="16" width="731" height="1048" key="RollbackChangesDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1594050951760" />
-    <state x="16" y="16" width="1888" height="1048" key="Vcs.Push.Dialog.v2" timestamp="1593553700825">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="229" y="86" key="SettingsEditor" timestamp="1594324307169">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="229" y="86" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1594324307169" />
+    <state x="12" y="13" width="1888" height="1048" key="Vcs.Push.Dialog.v2" timestamp="1594308687502">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="12" y="13" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1594308687502" />
     <state x="16" y="16" width="1888" height="1048" key="Vcs.Push.Dialog.v2/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1593553700825" />
     <state x="385" y="204" key="search.everywhere.popup" timestamp="1594139755082">
       <screen x="0" y="0" width="1440" height="900" />

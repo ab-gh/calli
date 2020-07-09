@@ -28,18 +28,19 @@ an open-source, minimalist calendar API and CLI
 - delete
 - CLI docs
 - edit (client side)
+- webapp edit
+- webapp delete
 
 ## Current
 - write input handling module
 - API docs
-- webdash buttons
+- webdash buttons - ???
 
-## Next
-- next
-- search
-
-### Soon
-- Complete JSON pretty-printer module
+## TODO NEXT
+- CLI next event
+- CLI search by time range
+- CLI search by time start
+- API GET refinement
 
 ### Schedule
 
