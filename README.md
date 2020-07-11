@@ -30,6 +30,10 @@ an open-source, minimalist calendar API and CLI
 - edit (client side)
 - webapp edit
 - webapp delete
+- CLI next event
+- CLI search by time range
+- CLI search by time start
+- API GET refinement
 
 ## Current
 - write input handling module
@@ -37,10 +41,7 @@ an open-source, minimalist calendar API and CLI
 - webdash buttons - ???
 
 ## TODO NEXT
-- CLI next event
-- CLI search by time range
-- CLI search by time start
-- API GET refinement
+
 
 ### Schedule
 
