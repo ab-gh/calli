@@ -34,11 +34,12 @@ an open-source, minimalist calendar API and CLI
 - CLI search by time range
 - CLI search by time start
 - API GET refinement
-
-## Current
 - write input handling module
 - API docs
 - webdash buttons - ???
+
+## Current
+
 
 ## TODO NEXT
 
