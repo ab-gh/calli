@@ -38,13 +38,13 @@ an open-source, minimalist calendar API and CLI
 - API docs
 - webdash buttons - ???
 
-## Current
 
 
 ## TODO NEXT
+-
 
 
-### Schedule
+
 
 ### Far
 - Compile as binary (i.e. include click library)
