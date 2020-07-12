@@ -19,6 +19,55 @@ def main():
     pass
 
 @main.command()
+@click.option('--event', '-e', default=False, is_flag=True)
+@click.option('--remind', '-r', default=False, is_flag=True)
+def next(event, remind):
+    today_start = dt.datetime.now().strftime('%s')
+    url = baseurl + "/events" + "?start=" + today_start
+    events_today = requests.get(url, headers={'token': token})
+    try:
+        for i in json.loads(events_today.text):
+            if not event and not remind:
+                printer.pretty(json.dumps([i]), "next")
+                break
+            elif event and not remind:
+                if i['type'] == "E":
+                    printer.pretty(json.dumps([i]), "next")
+                    break
+                else: continue
+            elif remind and not event:
+                if i['type'] == "R":
+                    printer.pretty(json.dumps([i]), "next")
+                    break
+                else: continue
+            else:
+                click.echo(click.style('please provide either an events or reminders flag, or neither', fg='yellow', bold=True))
+                break
+    except TypeError:
+        click.echo(click.style('no events were found', fg='red', bold=True))
+
+@main.command()
+@click.option('--start', '-s', nargs=1, default=dt.datetime.now().strftime("%c"), prompt="search from")
+@click.option('--end', '-e', nargs=1, default=False, prompt=False)
+def search(start, end):
+    try:
+        start = dateutil.parser.parse(start, dayfirst=True)
+    except ValueError:
+        click.echo(click.style('please enter a time to search from', fg='yellow'))
+    url = baseurl + "/events" + "?start=" + start.strftime("%s")
+    if end:
+        try:
+            end = dateutil.parser.parse(end, dayfirst=True)
+        except ValueError:
+            click.echo(click.style('please enter a valid time to search to, or leave it blank', fg='yellow'))
+        url = url + "?end=" + end.strftim("%s")
+    search_results = requests.get(url, headers={'token': token})
+    printer.pretty(search_results.text, "in search")
+
+
+
+
+@main.command()
 def today():
     today_start = dt.datetime.now().strftime('%s')
     today_end = dt.datetime.combine((dt.datetime.today() + dt.timedelta(days=1)), dt.time(0)).strftime('%s')
@@ -43,8 +92,8 @@ def week():
     printer.pretty(events_today.text, "this week")
 
 @main.command()
-@click.option("--username", prompt="username")
-@click.option("--password", prompt="password", hide_input=True)
+@click.option("--username", "-u", prompt="username")
+@click.option("--password", "-p", prompt="password", hide_input=True)
 def login(username, password):
     url = baseurl + "/login"
     credentials = {}

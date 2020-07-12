@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a969c682-6a41-4fe2-a7f4-5626a4a21091" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calli" beforeDir="false" afterPath="$PROJECT_DIR$/calli" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +68,8 @@
       <workItem from="1594132481936" duration="5392000" />
       <workItem from="1594144809215" duration="438000" />
       <workItem from="1594205694055" duration="5921000" />
+      <workItem from="1594379861930" duration="2396000" />
+      <workItem from="1594466401148" duration="1881000" />
     </task>
     <task id="LOCAL-00001" summary="changes cal-&gt;calli (cal exists in unix)">
       <created>1593553698862</created>
