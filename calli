@@ -10,7 +10,7 @@ import inflect
 import os
 import sys
 
-baseurl = "https://c448e6d2-b8c6-460c-9f06-b405cfa8cb01-ide.cs50.xyz:8080/api"
+baseurl = "https://calliapp.dev/api"
 
 token = None
 
