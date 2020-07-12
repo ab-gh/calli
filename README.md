@@ -30,19 +30,21 @@ an open-source, minimalist calendar API and CLI
 - edit (client side)
 - webapp edit
 - webapp delete
-
-## Current
-- write input handling module
-- API docs
-- webdash buttons - ???
-
-## TODO NEXT
 - CLI next event
 - CLI search by time range
 - CLI search by time start
 - API GET refinement
+- write input handling module
+- API docs
+- webdash buttons - ???
 
-### Schedule
+
+
+## TODO NEXT
+-
+
+
+
 
 ### Far
 - Compile as binary (i.e. include click library)
