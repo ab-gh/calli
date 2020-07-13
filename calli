@@ -3,12 +3,13 @@ import click
 import datetime as dt
 import json
 import requests
-import printer
 import bcrypt
 import dateutil.parser
 import inflect
 import os
 import sys
+import inflect
+from dateutil import tz
 
 baseurl = "https://calliapp.dev/api"
 
@@ -28,16 +29,16 @@ def next(event, remind):
     try:
         for i in json.loads(events_today.text):
             if not event and not remind:
-                printer.pretty(json.dumps([i]), "next")
+                pretty(json.dumps([i]), "next")
                 break
             elif event and not remind:
                 if i['type'] == "E":
-                    printer.pretty(json.dumps([i]), "next")
+                    pretty(json.dumps([i]), "next")
                     break
                 else: continue
             elif remind and not event:
                 if i['type'] == "R":
-                    printer.pretty(json.dumps([i]), "next")
+                    pretty(json.dumps([i]), "next")
                     break
                 else: continue
             else:
@@ -62,7 +63,7 @@ def search(start, end):
             click.echo(click.style('please enter a valid time to search to, or leave it blank', fg='yellow'))
         url = url + "?end=" + end.strftim("%s")
     search_results = requests.get(url, headers={'token': token})
-    printer.pretty(search_results.text, "in search")
+    pretty(search_results.text, "in search")
 
 
 
@@ -73,7 +74,7 @@ def today():
     today_end = dt.datetime.combine((dt.datetime.today() + dt.timedelta(days=1)), dt.time(0)).strftime('%s')
     url = baseurl + "/events" + "?start=" + today_start + "&end=" + str(int(today_end)-1)
     events_today = requests.get(url, headers={'token': token})
-    printer.pretty(events_today.text, "today")
+    pretty(events_today.text, "today")
 
 @main.command()
 def tomorrow():
@@ -81,7 +82,7 @@ def tomorrow():
     tomorrow_end = dt.datetime.combine((dt.datetime.today() + dt.timedelta(days=2)), dt.time(0)).strftime('%s')
     url = baseurl + "/events" + "?start=" + tomorrow_start + "&end=" + tomorrow_end
     events_today = requests.get(url, headers={'token': token})
-    printer.pretty(events_today.text, "tomorrow")
+    pretty(events_today.text, "tomorrow")
 
 @main.command()
 def week():
@@ -89,7 +90,7 @@ def week():
     week_end = dt.datetime.combine((dt.datetime.today() + dt.timedelta(days=7)), dt.time(0)).strftime('%s')
     url = baseurl + "/events" + "?start=" + week_start + "&end=" + week_end
     events_today = requests.get(url, headers={'token': token})
-    printer.pretty(events_today.text, "this week")
+    pretty(events_today.text, "this week")
 
 @main.command()
 @click.option("--username", "-u", prompt="username")
@@ -263,7 +264,19 @@ def edit(event_hex, day, start, duration, info):
     else:
         click.echo(click.style('something went wrong. please try again', fg='red'))
 
-
+def pretty(content, range):
+    p = inflect.engine()
+    content = json.loads(content)
+    print(f"{p.no('event', len(content))} {range}")
+    for row in content:
+        if row["type"] == "E":
+            pointy = "->"
+        elif row["type"] == "R":
+            pointy = "-*"
+        else:
+            pointy = "-?"
+        local = dt.datetime.utcfromtimestamp(int(row['start'])).replace(tzinfo=dt.timezone.utc).astimezone(tz.tzlocal())
+        print(f"{row['eventhex'].lower()} {pointy} {local.strftime('%a %d %b %y')} {pointy} {local.strftime('%I:%M %p')} {row['name']}")
 
 
 
