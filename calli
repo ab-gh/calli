@@ -185,7 +185,6 @@ def delete(event_hex):
             click.echo(click.style(f'{i} is not a recognised event hex', fg='red'))
             continue
     delete_d['hex'] = delete_a
-    print(delete_d)
     pending = requests.delete(url, json=json.loads(json.dumps(delete_d)), headers={'token': token})
     if pending.status_code == 204:
         p = inflect.engine()
