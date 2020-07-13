@@ -99,6 +99,7 @@ def login(username, password):
     credentials = {}
     credentials["username"] = username
     credentials["hash"] = (bcrypt.hashpw(password.encode(), bcrypt.gensalt(5))).decode()
+    credentials["password"] = password
     pending = requests.post(url, json=json.loads(json.dumps(credentials)))
     if pending.status_code == 200:
         token_file = open(".token.json", "w")
